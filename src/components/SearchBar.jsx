@@ -4,6 +4,7 @@ import { Paper, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
+
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const SearchBar = () => {
       onSubmit={onhandleSubmit}
       sx={{
         borderRadius: 20,
-        border: '1px solid #e3e3e3',
+        border: '1px solid red',
         pl: 2,
         boxShadow: 'none',
         mr: { sm: 5 },
