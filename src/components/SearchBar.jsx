@@ -1,45 +1,49 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { Paper, IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Paper, InputBase, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { styled } from '@mui/material/styles';
+
+const ResponsivePaper = styled(Paper)(({ theme }) => ({
+  borderRadius: 20,
+  border: '1px solid red',
+  padding: '5px',
+  display: 'flex',
+  alignItems: 'center',
+  width: '100%', // Full width on all screens
+  [theme.breakpoints.up('sm')]: {
+    width: 'auto', // Auto width on tablet and larger screens
+  },
+}));
 
 const SearchBar = () => {
-
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-  const onhandleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (searchTerm) {
       navigate(`/search/${searchTerm}`);
-
       setSearchTerm('');
     }
   };
 
   return (
-    <Paper
-      component='form'
-      onSubmit={onhandleSubmit}
-      sx={{
-        borderRadius: 20,
-        border: '1px solid red',
-        pl: 2,
-        boxShadow: 'none',
-        mr: { sm: 5 },
-      }}
-    >
-      <input
-        className='search-bar'
-        placeholder='Search...'
+    <ResponsivePaper component="form" onSubmit={handleSubmit}>
+      <InputBase
+        placeholder="Search..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{
+          flex: 1,
+          ml: 1, // Add left margin for space
+        }}
       />
-      <IconButton type='submit' sx={{ p: '10px', color: 'red' }} aria-label='search'>
+      <IconButton type="submit" sx={{ color: 'red' }} aria-label="search">
         <SearchIcon />
       </IconButton>
-    </Paper>
+    </ResponsivePaper>
   );
 };
 
