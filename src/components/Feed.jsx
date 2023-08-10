@@ -12,7 +12,7 @@ const Feed = ({ darkMode }) => {
     setVideos(null);
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
       .then((data) => setVideos(data.items))
-  }, [ selectedCategory, darkMode ]);
+  }, [ selectedCategory]);
 
   return (
     <Box
@@ -43,4 +43,4 @@ const Feed = ({ darkMode }) => {
 
 };
 
-export default Feed;
+export default React.memo(Feed);
