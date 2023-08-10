@@ -19,9 +19,10 @@ const commentMapping = (comment, darkMode) => (
       padding: "8px",
     } }
   >
-    { comment.snippet.topLevelComment.snippet.textDisplay }
+    { comment?.snippet.topLevelComment.snippet.textDisplay }
   </Typography>
 );
+
 const VideoDetail = ({ darkMode }) => {
   const [ videoDetail, setVideoDetail ] = useState(null);
   const [ videos, setVideos ] = useState(null);
@@ -75,24 +76,26 @@ const VideoDetail = ({ darkMode }) => {
             </Stack>
             <Box sx={ { display: "flex", justifyContent: "center", mt: 2 } }>
               <IconButton onClick={ handleExpandComments } sx={ { color: darkMode ? "white" : "black" } }>
-              <div style={ { color:darkMode? "white":"black", fontSize: "17px" } }><h2>Comments</h2></div>
+                <div style={ { color: darkMode ? "white" : "black", fontSize: "17px" } }><h2>Comments</h2></div>
                 <ExpandMoreIcon sx={ { transform: commentsExpanded ? "rotate(180deg)" : "rotate(0deg)" } } />
               </IconButton>
             </Box>
+            { commentsExpanded && (
+              <Box sx={ { width: "95%", position: "sticky", top: "86px", marginTop: "20px", marginLeft: "25px", overflow: "hidden" } }>
+                <Paper elevation={ 3 } sx={ { backgroundColor: darkMode ? "#000" : "#fff", padding: "10px" } }>
+                  <Stack direction="column" gap={ 2 }>
+                    { comments.slice(0, 5).map((comment) => commentMapping(comment, darkMode)) }
+                    {window.innerWidth >= 768 && comments.map((comment) => commentMapping(comment, darkMode))}
+                    {window.innerWidth >= 768 && comments.map((comment) => commentMapping(comment, darkMode))}
+                    {window.innerWidth >= 768 && comments.slice(0,80).map((comment) => commentMapping(comment, darkMode))}
+                    {window.innerWidth <= 500 && comments.slice(0,50).map((comment) => commentMapping(comment, darkMode))}
+                   
+                  </Stack>
+                </Paper>
+              </Box>
+            ) }
           </Box>
-          <Box sx={ { width: "95%", position: "sticky", top: "86px", marginTop: "20px", marginLeft: "25px", height: commentsExpanded ? "auto" : "0", overflow: "hidden" } }>
-            <Paper elevation={ 3 } sx={ { backgroundColor: darkMode ? "#000" : "#fff", padding: "10px" } }>
-              <Stack direction="column" gap={ 2 }>
-                { comments.slice(0, 5).map((comment) => commentMapping(comment, darkMode)) }
-
-                { comments.map((comment) => commentMapping(comment, darkMode)) }
-
-                { comments.map((comment) => commentMapping(comment, darkMode)) }
-                { comments.map((comment) => commentMapping(comment, darkMode)) }
-
-              </Stack>
-            </Paper>
-          </Box>
+         
         </Box>
         <Box px={ 2 } py={ { md: 1, xs: 5 } } justifyContent="center" alignItems="center" className="right-side-feed">
           <Videos videos={ videos } darkMode={ darkMode } direction="column" />
