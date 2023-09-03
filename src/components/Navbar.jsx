@@ -55,7 +55,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 const Navbar = ({darkMode,handleDarkModeToggle}) => {
 
-  console.log(darkMode)
 
   return (
     <Stack

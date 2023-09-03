@@ -10,7 +10,7 @@ const App = () => {
   const handleDarkModeToggle = () => {
   setDarkMode((darkMode) => !darkMode); // Toggle the previous state value
   };
-  console.log("app darkMode:",darkMode);
+
   return(
     
   <BrowserRouter>

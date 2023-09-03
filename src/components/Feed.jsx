@@ -7,7 +7,7 @@ import { Videos, Sidebar } from "./";
 const Feed = ({ darkMode }) => {
   const [ selectedCategory, setSelectedCategory ] = useState("New");
   const [ videos, setVideos ] = useState(null);
-  console.log('Feed - darkMode:', darkMode);
+ 
   useEffect(() => {
     setVideos(null);
     fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
