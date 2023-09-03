@@ -27,7 +27,7 @@ const VideoCard = ({ video: { id: { videoId }, snippet } ,darkMode}) => {
           <CheckCircleIcon sx={{ fontSize: "12px", color:darkMode? "white":"black", ml: "5px" }} />
         </Typography>
       </Link>
-    </CardContent>
+  </CardContent>
   </Card>
 );
 }

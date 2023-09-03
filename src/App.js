@@ -15,8 +15,6 @@ const App = () => {
     
   <BrowserRouter>
     <Box sx={{ backgroundColor: '#000' }}>
-      
-
       <Navbar  darkMode={darkMode} handleDarkModeToggle={handleDarkModeToggle}  />
       <ScrollToTop/>
       <Routes>
